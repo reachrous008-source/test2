@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Kits Store — Premium Streetwear</title>
+  <meta name="description" content="Premium streetwear & jerseys. Luxury quality, street-ready style." />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+
+  <!-- PAGE LOADER -->
+  <div id="page-loader">
+    <div class="loader-logo">PRIME KITS</div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div id="announcement-bar" data-cms="announcement">
+    ✦ FREE SHIPPING ON ORDERS OVER $50 · AUTHENTIC PREMIUM JERSEYS ✦
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Prime Kits" id="nav-logo-img" />
+        <span data-cms="store-name">PRIME KITS</span>
+      </a>
+      <ul class="nav-links" id="desktop-nav">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pages/shop.html">Shop</a></li>
+        <li><a href="pages/categories.html">Categories</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="search-toggle" aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button class="nav-cart-btn" id="cart-toggle" aria-label="Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count hidden" id="cart-count">0</span>
+        </button>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pages/shop.html">Shop</a></li>
+      <li><a href="pages/categories.html">Categories</a></li>
+      <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+    <div class="mobile-social" id="mobile-social-links"></div>
+  </div>
+
+  <!-- SEARCH OVERLAY -->
+  <div id="search-overlay">
+    <div class="search-inner">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass" style="color:var(--gold);font-size:1.2rem;"></i>
+        <input type="text" id="search-input" placeholder="Search jerseys, kits…" autocomplete="off" />
+        <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <!-- CART OVERLAY -->
+  <div id="cart-overlay"></div>
+
+  <!-- CART SIDEBAR -->
+  <aside id="cart-sidebar">
+    <div class="cart-header">
+      <h3>YOUR BAG</h3>
+      <button class="cart-close" id="cart-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty">
+        <div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        <p>Your bag is empty</p>
+        <a href="pages/shop.html" class="btn-primary" style="font-size:0.7rem;padding:10px 24px;">SHOP NOW</a>
+      </div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display:none;">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <a href="pages/checkout.html" class="checkout-btn">PROCEED TO CHECKOUT</a>
+    </div>
+  </aside>
+
+  <!-- PRODUCT MODAL -->
+  <div id="product-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-grid">
+        <div class="modal-images">
+          <div class="modal-main-img-wrap">
+            <img id="modal-main-img" src="" alt="" />
+          </div>
+          <div class="modal-thumbs" id="modal-thumbs"></div>
+        </div>
+        <div class="modal-info">
+          <div class="modal-badge-wrap" id="modal-badge-wrap"></div>
+          <p class="modal-category" id="modal-category"></p>
+          <h2 class="modal-title" id="modal-title"></h2>
+          <div class="modal-price-row">
+            <span class="modal-price" id="modal-price"></span>
+            <span class="modal-old-price" id="modal-old-price"></span>
+          </div>
+          <p class="modal-desc" id="modal-desc"></p>
+          <div class="modal-sizes" id="modal-sizes-wrap">
+            <h4>SELECT SIZE</h4>
+            <div class="size-grid" id="modal-size-grid"></div>
+          </div>
+          <div class="modal-qty">
+            <label>QTY</label>
+            <div class="qty-control">
+              <button id="qty-minus">−</button>
+              <input type="number" id="qty-input" value="1" min="1" max="99" />
+              <button id="qty-plus">+</button>
+            </div>
+          </div>
+          <button class="modal-add-btn" id="modal-add-btn">
+            <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  MAIN CONTENT                                          -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow" data-cms="hero-eyebrow">Est. 2026 · Phnom Penh, Cambodia</div>
+      <h1 class="hero-title">
+        <span data-cms="hero-title-line1">PRIME</span><br>
+        KITS
+      </h1>
+      <p class="hero-sub" data-cms="hero-subtitle">
+        Luxury streetwear & premium jerseys, crafted for those who move differently.
+      </p>
+      <div class="hero-cta">
+        <a href="pages/shop.html" class="btn-primary">
+          <i class="fa-solid fa-arrow-right"></i> SHOP NOW
+        </a>
+        <a href="pages/categories.html" class="btn-outline">EXPLORE CATEGORIES</a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track" id="marquee-track">
+      <span class="marquee-item">Premium Quality <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Authentic Jerseys <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Fast Delivery <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Limited Drops <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Street Ready <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Prime Kits Store <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Premium Quality <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Authentic Jerseys <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Fast Delivery <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Limited Drops <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Street Ready <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Prime Kits Store <span class="marquee-sep">✦</span></span>
+    </div>
+  </div>
+
+  <!-- CATEGORIES SECTION -->
+  <section class="section" id="categories-section">
+    <div class="section-inner">
+      <div class="section-header animate-on-scroll">
+        <p class="section-eyebrow">Shop By Style</p>
+        <h2 class="section-title">EXPLORE <span>CATEGORIES</span></h2>
+        <div class="section-divider"><span class="section-divider-icon">✦</span></div>
+      </div>
+      <div class="categories-grid" id="home-categories-grid">
+        <!-- Populated by JS -->
+        <div class="cat-skeleton"></div>
+        <div class="cat-skeleton"></div>
+        <div class="cat-skeleton"></div>
+        <div class="cat-skeleton"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section" id="featured-section" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="section-header animate-on-scroll">
+        <p class="section-eyebrow">New Arrivals</p>
+        <h2 class="section-title">FEATURED <span>DROPS</span></h2>
+        <div class="section-divider"><span class="section-divider-icon">✦</span></div>
+      </div>
+      <div class="filter-bar" id="home-filter-bar">
+        <button class="filter-chip active" data-filter="all">All</button>
+      </div>
+      <div class="products-grid" id="featured-products-grid">
+        <!-- Populated by JS -->
+      </div>
+      <div style="text-align:center;margin-top:48px;" class="animate-on-scroll">
+        <a href="pages/shop.html" class="btn-outline">VIEW ALL PRODUCTS <i class="fa-solid fa-arrow-right" style="margin-left:6px;"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED BANNER -->
+  <section class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="featured-banner animate-on-scroll">
+        <div class="featured-banner-text">
+          <h2 data-cms="banner-title">THE <span>PRIME</span><br>COLLECTION</h2>
+          <p data-cms="banner-subtitle">Limited edition drops. Only the finest cuts for the streets of Phnom Penh and beyond.</p>
+          <a href="pages/shop.html" class="btn-primary">SHOP THE COLLECTION</a>
+        </div>
+        <div class="featured-banner-img">
+          <img src="assets/logo.png" alt="Prime Kits Collection" id="banner-img" style="object-fit:contain;padding:20px;background:#111;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES STRIP -->
+  <section class="section" style="padding:0 24px 80px;">
+    <div class="section-inner">
+      <div class="features-strip">
+        <div class="feature-item animate-on-scroll">
+          <div class="feature-icon">🚚</div>
+          <div class="feature-title">Fast Shipping</div>
+          <div class="feature-desc" data-cms="feature-shipping">J&T, Vireak Buntham & more</div>
+        </div>
+        <div class="feature-item animate-on-scroll">
+          <div class="feature-icon">✅</div>
+          <div class="feature-title">Authentic Quality</div>
+          <div class="feature-desc" data-cms="feature-quality">100% premium materials</div>
+        </div>
+        <div class="feature-item animate-on-scroll">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">Secure Payment</div>
+          <div class="feature-desc" data-cms="feature-payment">ABA QR — Fast & Safe</div>
+        </div>
+        <div class="feature-item animate-on-scroll">
+          <div class="feature-icon">💬</div>
+          <div class="feature-title">24/7 Support</div>
+          <div class="feature-desc" data-cms="feature-support">Telegram & direct contact</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL STRIP -->
+  <section class="section" style="padding:0 24px 40px;">
+    <div class="section-inner">
+      <div style="text-align:center;margin-bottom:32px;" class="animate-on-scroll">
+        <p class="section-eyebrow">Follow Us</p>
+        <h2 class="section-title" style="font-size:clamp(1.5rem,4vw,2.5rem);">STAY <span>CONNECTED</span></h2>
+      </div>
+      <div class="social-strip" id="social-links-strip">
+        <!-- Populated from Firestore settings -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-name" data-cms="store-name">PRIME KITS</div>
+          <p class="footer-tagline" data-cms="footer-tagline">Premium streetwear for the bold.</p>
+          <div class="social-strip" id="footer-social" style="padding:0;justify-content:flex-start;gap:12px;flex-wrap:wrap;"></div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="pages/shop.html">All Products</a></li>
+            <li><a href="pages/categories.html">Categories</a></li>
+            <li><a href="pages/shop.html?filter=new">New Arrivals</a></li>
+            <li><a href="pages/shop.html?filter=sale">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <ul>
+            <li><a href="pages/contact.html">Contact Us</a></li>
+            <li><a href="pages/shipping.html">Shipping Info</a></li>
+            <li><a href="pages/returns.html">Returns</a></li>
+            <li><a href="pages/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul id="footer-contact-list">
+            <li><a href="#"><i class="fa-solid fa-phone" style="color:var(--gold);margin-right:8px;"></i><span data-cms="contact-phone">Loading…</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-envelope" style="color:var(--gold);margin-right:8px;"></i><span data-cms="contact-email">Loading…</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-location-dot" style="color:var(--gold);margin-right:8px;"></i><span data-cms="contact-address">Loading…</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="footer-year"></span> <span data-cms="store-name">Prime Kits Store</span>. All rights reserved.</p>
+        <p>Made with <span style="color:var(--gold);">✦</span> in Cambodia</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FIREBASE -->
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/store.js"></script>
+  <script type="module" src="js/cart.js"></script>
+  <script type="module" src="js/ui.js"></script>
+  <script type="module" src="js/home.js"></script>
+
+</body>
+</html>
